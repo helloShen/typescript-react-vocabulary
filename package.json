@@ -9,7 +9,11 @@
     "watch": "webpack --watch",
     "check": "tsc"
   },
-  "keywords": ["javascript", "react", "typescript"],
+  "keywords": [
+    "javascript",
+    "react",
+    "typescript"
+  ],
   "author": "hireme.shen@gmail.com",
   "license": "MIT",
   "jest": {
@@ -49,6 +53,7 @@
     "@types/react-dom": "^18.0.3",
     "@types/react-router-dom": "^5.3.3",
     "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "react-dom": "^18.1.0",
+    "react-icons": "^4.3.1"
   }
 }

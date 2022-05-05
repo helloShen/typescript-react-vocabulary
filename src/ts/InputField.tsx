@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {useState, useRef} from 'react';
+import {VocabsAction} from './Vocab';
 
 interface InputFieldProps {
-  vocab: string;
-  setVocab: React.Dispatch<React.SetStateAction<string>>;
-  handleAdd: (e: React.FormEvent) => void;
+  dispatch: React.Dispatch<VocabsAction>;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
-  vocab,
-  setVocab,
-  handleAdd,
+  dispatch,
 }) => {
+  const [vocab, setVocab] = useState<string>('');
+  const inputRef = useRef<HTMLInputElement>(null);
+
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setVocab(e.target.value);
   };
@@ -18,7 +18,12 @@ const InputField: React.FC<InputFieldProps> = ({
   return (
     <form
       className="input"
-      onSubmit={handleAdd}
+      onSubmit={(e) => {
+        e.preventDefault();
+        dispatch({type: 'add', payload: vocab});
+        setVocab('');
+        inputRef.current?.blur();
+      }}
     >
       <input
         type="input"

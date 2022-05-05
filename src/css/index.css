@@ -27,3 +27,11 @@
   padding: .5rem 1rem;
   border: 1px solid black;
 }
+
+.card__word.done {
+  text-decoration: line-through;
+}
+
+.card__isdone.done {
+  color: green;
+}

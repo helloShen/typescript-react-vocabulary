@@ -20,12 +20,14 @@
 
 .root {
 	min-height: 100vh;
-	background-color: var(--back-gray);
+	background-color: var(--white);
 }
 
 .card {
   padding: .5rem 1rem;
-  border: 1px solid black;
+  border: 1px solid var(--border-gray);
+  border-radius: .25rem;
+  background-color: var(--back-gray);
 }
 
 .card__word.done {

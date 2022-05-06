@@ -1,8 +1,11 @@
 @import url('./norm.css');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&family=Roboto:wght@100;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&display=swap');
 
 :root {
+  --primary-blue: rgb(0, 114, 229);
+  --primary-black: rgb(10, 25, 41);
 	--black: #24292d;
 	--black-dimmer: #2b3137;
 	--gray: #58606a;
@@ -20,7 +23,88 @@
 
 .root {
 	min-height: 100vh;
-	background-color: var(--white);
+	background-color: var(--back-gray);
+}
+
+.app {
+  height: 100vh;
+  padding: 0 2rem;
+  font-family: 'Roboto', sans-serif;
+  display: grid;
+  grid-template-rows: auto auto 1fr 5rem;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2rem;
+}
+
+.heading {
+  width: 34rem;
+  text-align: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--primary-black);
+  padding: 5rem 0;
+  padding-bottom: 2rem;
+  grid-column: 1 / 3;
+  justify-self: center;
+}
+
+.heading__logo {
+  color: var(--primary-blue);
+}
+
+.inputForm {
+  width: 34rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  grid-column: 1 / 3;
+  justify-self: center;
+  display: grid;
+  grid-template-columns: 28rem 3rem;
+  align-items: center;
+  gap: 1rem
+}
+
+.inputForm__input {
+  height: 2.4rem;
+  width: 28rem;
+  padding: 0 .5rem;
+  border: 1px solid var(--border-gray);
+  border-radius: .25rem;
+  outline: none;
+  font-size: 1rem;
+}
+
+.paper__container {
+  display: grid;
+  align-content: start;
+}
+
+.doneSection,
+.notDoneSection {
+  min-width: 20rem;
+  width: 30vw;
+  min-height: 20rem;
+  padding: 1rem;
+}
+
+.notDoneSection {
+  justify-self: end;
+}
+
+.doneSection {
+  justify-self: start;
+}
+
+.paper {
+  display: grid;
+  grid-template-rows: 1fr 1.5rem;
+}
+
+.paper__label {
+  align-self: center;
+  justify-self: center;
+  color: var(--lighter-gray);
 }
 
 .card {
@@ -29,8 +113,12 @@
   padding: .5rem .25rem;
   margin: .25rem .25rem;
   border: 1px solid var(--border-gray);
-  border-radius: .25rem;
+  border-radius: 1.25rem;
   background-color: var(--back-gray);
+}
+
+.card:hover {
+  background-color: var(--border-gray);
 }
 
 .card__done {
@@ -56,6 +144,7 @@
 .card__edit > svg,
 .card__delete > svg {
   color: transparent;
+  margin: 0 .125rem;
 }
 
 .card__done > svg {
@@ -68,13 +157,20 @@
 }
 
 .card:hover > .card__done:hover > svg,
-.card:hover > .card__edit:hover > svg,
-.card:hover > .card__delete:hover > svg {
+.card:hover > .card__edit:hover > svg {
   color: var(--black);
+}
+
+.card:hover > .card__delete:hover > svg {
+  color: var(--red);
 }
 
 .card__done.done > svg {
   color: rgb(45, 164, 79, 0.6) !important;
+}
+
+.card__done.done:hover > svg {
+  color: var(--green) !important;
 }
 
 .card__word {
@@ -87,6 +183,8 @@
   outline: none;
   display: inline-block;
   margin-right: .5rem;
+  font-size: 1rem;
+  background-color: var(--back-gray);
 }
 
 .card__save,
@@ -102,4 +200,9 @@
 
 .card__cancel:hover {
   color: var(--red);
+}
+
+.footer {
+  grid-column: 1 / 3;
+  justify-self: center;
 }

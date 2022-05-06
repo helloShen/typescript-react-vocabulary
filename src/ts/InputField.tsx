@@ -1,5 +1,6 @@
 import React, {useState, useRef} from 'react';
 import {VocabsAction} from './Vocab';
+import Button from '@mui/material/Button';
 
 interface InputFieldProps {
   dispatch: React.Dispatch<VocabsAction>;
@@ -17,7 +18,7 @@ const InputField: React.FC<InputFieldProps> = ({
 
   return (
     <form
-      className="input"
+      className="inputForm"
       onSubmit={(e) => {
         e.preventDefault();
         dispatch({type: 'add', payload: vocab});
@@ -26,17 +27,18 @@ const InputField: React.FC<InputFieldProps> = ({
       }}
     >
       <input
-        type="input"
+        type="text"
         placeholder="Enter a vocabulary"
         name="vocab"
-        className="input__box"
+        className="inputForm__input"
         value={vocab}
         onChange={handleChange}
       />
-      <button
-        className="input__submit"
+      <Button
+        className="inputForm__submit"
+        variant="contained"
         type="submit"
-      >Go</button>
+      >Go</Button>
     </form>
   );
 };

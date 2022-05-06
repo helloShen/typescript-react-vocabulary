@@ -86,7 +86,6 @@ const Card: React.FC<CardProps> = ({vocab, vocabs, dispatch}) => {
           className={inputClasses}
           value={localVocab}
           type="text"
-          // size={localVocab.length}
           onChange={handleChange}
           onKeyDown={(e) => {
             if (e.key === 'Enter') handleSave();

@@ -1,3 +1,5 @@
+import {DATA_NAME} from './App';
+
 interface Vocab {
   id: number;
   word: string;
@@ -16,23 +18,31 @@ export const vocabsReducer: VocabsReducer = (vocabs, action) => {
   switch (action.type) {
     case 'add':
       if (action.payload) {
-        return [
+        const addResult = [
           ...vocabs,
           {id: next++, word: action.payload, isDone: false},
         ];
+        localStorage.setItem(DATA_NAME, JSON.stringify(addResult));
+        return addResult;
       }
     case 'edit':
       const data = action.payload as {id: number, text: string};
-      return vocabs.map((v) => {
+      const editResult = vocabs.map((v) => {
         return (v.id === data.id) ?
           {...v, word: data.text} : v;
       });
+      localStorage.setItem(DATA_NAME, JSON.stringify(editResult));
+      return editResult;
     case 'delete':
-      return vocabs.filter((v) => v.id !== action.payload);
+      const deleteResult = vocabs.filter((v) => v.id !== action.payload);
+      localStorage.setItem(DATA_NAME, JSON.stringify(deleteResult));
+      return deleteResult;
     case 'done':
-      return vocabs.map((v) => {
+      const doneResult = vocabs.map((v) => {
         return (v.id === action.payload) ? {...v, isDone: !v.isDone} : v;
       });
+      localStorage.setItem(DATA_NAME, JSON.stringify(doneResult));
+      return doneResult;
     default:
       throw new Error();
   }

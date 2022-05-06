@@ -3,7 +3,9 @@
   "exclude": ["node_modules/**/*"],
   "compilerOptions": {
     "outDir": "src/dts/",
+    "lib": ["es6", "dom"],
     "noImplicitAny": true,
+    "noImplicitThis": true,
     "strictNullChecks": true,
     "module": "es6",
     "target": "es5",

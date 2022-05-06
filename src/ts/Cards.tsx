@@ -1,8 +1,12 @@
 import React, {useState, useEffect, useRef} from 'react';
 import Vocab, {VocabsAction} from './Vocab';
-import {MdModeEdit} from 'react-icons/md';
-import {MdOutlineDelete} from 'react-icons/md';
-import {MdOutlineDone} from 'react-icons/md';
+import {
+  MdModeEdit,
+  MdCancel,
+  MdCheck,
+  MdCheckCircle,
+  MdClose,
+} from 'react-icons/md';
 
 export interface CardsProps {
   vocabs: Vocab[];
@@ -56,12 +60,15 @@ const Card: React.FC<CardProps> = ({vocab, vocabs, dispatch}) => {
     toggleEditing();
   }
 
+  const inputClasses = 'card__input' +
+    ((vocab.isDone) ? ' done' : '');
   const saveClasses = 'btn card__save';
   const cancelClasses = 'btn card__cancel';
   const wordClasses = 'card__word' +
     ((vocab.isDone) ? ' done' : '');
-  const isDoneClasses = 'icon card__isdone' +
-    ((vocab.isDone) ? ' done' : '');
+  const isDoneClasses = 'icon card__done' +
+    ((vocab.isDone) ? ' done' : '') +
+    ((editing) ? ' editing' : '');
   const editClasses = 'icon card__edit';
   const deleteClasses = 'icon card__delete';
 
@@ -69,37 +76,47 @@ const Card: React.FC<CardProps> = ({vocab, vocabs, dispatch}) => {
     (editing) ?
     (
       <div className="card">
+        <span className={isDoneClasses}>
+          <MdCheckCircle
+            onClick={() => dispatch({type: 'done', payload: vocab.id})}
+          />
+        </span>
         <input
           ref={vocabInput}
-          className={wordClasses}
+          className={inputClasses}
           value={localVocab}
+          type="text"
+          // size={localVocab.length}
           onChange={handleChange}
           onKeyDown={(e) => {
             if (e.key === 'Enter') handleSave();
           }}
         />
-        <button
+        <MdCheck
           className={saveClasses}
           onClick={handleSave}
-        >Save</button>
-        <button
+        />
+        <MdClose
           className={cancelClasses}
-          onClick={toggleEditing}
-        >Cancel</button>
+          onClick={() => {
+            toggleEditing();
+            setLocalVocab(vocab.word);
+          }}
+        />
       </div>
     ) : (
       <div className="card">
-        <span className={wordClasses}>{vocab.word}</span>
         <span className={isDoneClasses}>
-          <MdOutlineDone
+          <MdCheckCircle
             onClick={() => dispatch({type: 'done', payload: vocab.id})}
           />
         </span>
+        <span className={wordClasses}>{vocab.word}</span>
         <span className={editClasses}>
           <MdModeEdit onClick={toggleEditing}/>
         </span>
         <span className={deleteClasses}>
-          <MdOutlineDelete
+          <MdCancel
             onClick={() => dispatch({type: 'delete', payload: vocab.id})}
           />
         </span>

@@ -12,7 +12,7 @@
 	--back-gray: #f6f8fa;
 	--white: #ffffff;
 	--red: #db2c00;
-	--green: #2da44e;
+	--green: rgb(45, 164, 79);
 	--blue: #0d74e7;
 	--blue2: #0969da;
 	--purple: #6e5494;
@@ -24,16 +24,82 @@
 }
 
 .card {
-  padding: .5rem 1rem;
+  display: inline-block;
+  line-height: 1.25;
+  padding: .5rem .25rem;
+  margin: .25rem .25rem;
   border: 1px solid var(--border-gray);
   border-radius: .25rem;
   background-color: var(--back-gray);
+}
+
+.card__done {
+  margin-right: .25rem;
+}
+
+.card__done.editing {
+  pointer-events: none;
 }
 
 .card__word.done {
   text-decoration: line-through;
 }
 
-.card__isdone.done {
-  color: green;
+.card__done > svg,
+.card__edit > svg,
+.card__delete > svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  vertical-align: bottom;
+}
+
+.card__edit > svg,
+.card__delete > svg {
+  color: transparent;
+}
+
+.card__done > svg {
+  color: var(--light-gray);
+}
+
+.card:hover > .card__edit > svg,
+.card:hover > .card__delete > svg {
+  color: var(--light-gray);
+}
+
+.card:hover > .card__done:hover > svg,
+.card:hover > .card__edit:hover > svg,
+.card:hover > .card__delete:hover > svg {
+  color: var(--black);
+}
+
+.card__done.done > svg {
+  color: rgb(45, 164, 79, 0.6) !important;
+}
+
+.card__word {
+  user-select: none;
+  margin-right: .5rem;
+}
+
+.card__input {
+  border: 0;
+  outline: none;
+  display: inline-block;
+  margin-right: .5rem;
+}
+
+.card__save,
+.card__cancel {
+  vertical-align: bottom;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.card__save:hover {
+  color: var(--green);
+}
+
+.card__cancel:hover {
+  color: var(--red);
 }
